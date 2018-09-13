@@ -17,13 +17,23 @@ url = "http://www.in-n-out.com/locations"
 browser = webdriver.Firefox()
 browser.get(url)
 browser.implicitly_wait(30)
-# browser.get(url)
+innoutiframelink = browser.find_element_by_tag_name("iframe").get_attribute('src')
 
-python_button = browser.find_element_by_tag_name("iframe")
-print(python_button('src'))
+print(innoutiframelink)
+
+innoutDriver = webdriver.Firefox()
+innoutDriver.get(innoutiframelink)
+innoutDriver.implicitly_wait(30)
+
+print(innoutDriver)
+
+iframeClicker = innoutDriver.find_element_by_id('tabAll')
+iframeClicker.click()
+print(iframeClicker)
 # python_button.click()
 
 #  soup = BeautifulSoup(browser.page_source, 'lxml')
 
 # print(soup)
 browser.quit()
+innoutDriver.quit()
